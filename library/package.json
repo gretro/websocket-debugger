@@ -1,0 +1,34 @@
+{
+  "name": "websocket-debugger",
+  "version": "0.1.0",
+  "description": "Websocket Debugger library",
+  "scripts": {
+    "build": "tsc",
+    "start": "node fuse.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gretro/websocket-debugger.git"
+  },
+  "keywords": [
+    "websocket",
+    "debug"
+  ],
+  "author": "Gabriel Lemire",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gretro/websocket-debugger/issues"
+  },
+  "homepage": "https://github.com/gretro/websocket-debugger#readme",
+  "devDependencies": {
+    "@types/uuid": "3.4.1",
+    "fuse-box": "2.2.2",
+    "http-proxy-middleware": "0.17.4",
+    "typescript": "2.4.2",
+    "ws": "3.1.0"
+  },
+  "dependencies": {
+    "uuid": "3.1.0"
+  }
+}
