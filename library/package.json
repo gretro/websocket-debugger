@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Websocket Debugger library",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf tmp && rimraf lib",
     "start": "node fuse.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +26,7 @@
     "@types/uuid": "3.4.1",
     "fuse-box": "2.2.2",
     "http-proxy-middleware": "0.17.4",
+    "rimraf": "2.6.1",
     "typescript": "2.4.2",
     "ws": "3.1.0"
   },
