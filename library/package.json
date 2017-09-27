@@ -14,7 +14,8 @@
   },
   "keywords": [
     "websocket",
-    "debug"
+    "debug",
+    "devtools"
   ],
   "author": "Gabriel Lemire",
   "license": "MIT",
@@ -23,14 +24,11 @@
   },
   "homepage": "https://github.com/gretro/websocket-debugger#readme",
   "devDependencies": {
-    "@types/uuid": "3.4.1",
     "fuse-box": "2.2.2",
     "http-proxy-middleware": "0.17.4",
     "rimraf": "2.6.1",
     "typescript": "2.4.2",
     "ws": "3.1.0"
   },
-  "dependencies": {
-    "uuid": "3.1.0"
-  }
+  "dependencies": {}
 }

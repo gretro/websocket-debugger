@@ -1,5 +1,4 @@
-import * as uuidv4 from 'uuid/v4';
-import { onSocketCreate, onSocketStatusChange, onMessageSend, onMessageReceived } from './extensionBridge';
+import { onSocketCreated, onSocketStatusChanged, onMessageSent, onMessageReceived } from './extensionBridge';
 
 interface SocketCallbacks {
   [key: string]: any;
@@ -14,8 +13,15 @@ interface ProxyProps {
   send: (data: any) => any;
 }
 
+function createUUIDv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 export function getWSProxy(socket: WebSocket): WebSocket {
-  const socketId = uuidv4();
+  const socketId: string = createUUIDv4();
 
   const socketCallbacks: SocketCallbacks = {
     onopen: socket.onopen,
@@ -28,7 +34,7 @@ export function getWSProxy(socket: WebSocket): WebSocket {
 
   const proxyProps: ProxyProps = {
     send: function proxySend(data: any) {
-      onMessageSend(socketId, data);
+      onMessageSent(socketId, data);
       this.send(data);
     }
   };
@@ -60,7 +66,7 @@ export function getWSProxy(socket: WebSocket): WebSocket {
     }
   });
 
-  onSocketCreate(socketId, socketProxy);
+  onSocketCreated(socketId, socketProxy);
   return socketProxy;
 }
 
@@ -70,7 +76,7 @@ function isFunction(obj: any) {
 
 function overrideSocketCallbacks(socket: WebSocket, socketId: string, callbacks: SocketCallbacks): void {
   socket.onopen = function proxyOnOpen(evt: Event) {
-    onSocketStatusChange(socketId, socket);
+    onSocketStatusChanged(socketId, socket);
 
     if (callbacks.onopen) {
       callbacks.onopen.bind(socket)(evt);
@@ -86,7 +92,7 @@ function overrideSocketCallbacks(socket: WebSocket, socketId: string, callbacks:
   }
 
   socket.onclose = function proxyOnClose(evt: CloseEvent) {
-    onSocketStatusChange(socketId, socket);
+    onSocketStatusChanged(socketId, socket);
 
     if (callbacks.onclose) {
       callbacks.onclose.bind(socket)(evt);
@@ -94,7 +100,7 @@ function overrideSocketCallbacks(socket: WebSocket, socketId: string, callbacks:
   }
 
   socket.onerror = function proxyOnError(evt: Event) {
-    onSocketStatusChange(socketId, socket);
+    onSocketStatusChanged(socketId, socket);
 
     if (callbacks.onerror) {
       callbacks.onerror.bind(socket)(evt);

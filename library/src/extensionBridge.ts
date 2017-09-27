@@ -1,6 +1,6 @@
 import { protocolDomain, protocolUtils } from './protocol';
 
-export function onSocketCreate(socketId: string, socket: WebSocket) {
+export function onSocketCreated(socketId: string, socket: WebSocket) {
   const msg: protocolDomain.Message<protocolDomain.SocketCreatedEvent> = {
     type: protocolDomain.SOCKET_CREATED_TYPE,
     payload: {
@@ -13,7 +13,7 @@ export function onSocketCreate(socketId: string, socket: WebSocket) {
   postMessage(msg);
 }
 
-export function onSocketStatusChange(socketId: string, socket: WebSocket) {
+export function onSocketStatusChanged(socketId: string, socket: WebSocket) {
   const msg: protocolDomain.Message<protocolDomain.SocketStatusUpdateEvent> = {
     type: protocolDomain.SOCKET_STATUS_UPDATE_TYPE,
     payload: {
@@ -25,7 +25,7 @@ export function onSocketStatusChange(socketId: string, socket: WebSocket) {
   postMessage(msg);
 }
 
-export function onMessageSend(socketId: string, data: any) {
+export function onMessageSent(socketId: string, data: any) {
   const msg: protocolDomain.Message<protocolDomain.MessageExchangeEvent> = {
     type: protocolDomain.MESSAGE_SENT_TYPE,
     payload: {
@@ -54,6 +54,8 @@ export function onMessageReceived(socketId: string, data: any) {
  * @param message Message to send.
  */
 function postMessage(message: protocolDomain.Message<any>): void {
+  console.debug('posting message', message)
+
   window.postMessage({
     ...message,
     version: protocolDomain.PROTOCOL_VERSION,
