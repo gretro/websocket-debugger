@@ -1,0 +1,23 @@
+{
+  "name": "websocket-debugger",
+  "version": "0.1.0",
+  "description": "Websocket debugger Chrome extension",
+  "main": "index.js",
+  "repository": "https://github.com/gretro/websocket-debugger",
+  "author": "Gabriel Lemire",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf dist && rimraf .fusebox",
+    "start": "node fuse.js"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.48",
+    "fuse-box": "2.2.31",
+    "rimraf": "2.6.2",
+    "typescript": "2.5.3"
+  },
+  "dependencies": {
+    "redux": "3.7.2"
+  }
+}
