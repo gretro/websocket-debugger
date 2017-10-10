@@ -10,16 +10,21 @@
   "scripts": {
     "clean": "rimraf dist && rimraf .fusebox",
     "test": "jest",
-    "start": "node fuse.js"
+    "lint": "tslint --type-check --project tsconfig.json",
+    "start": "webpack",
+    "build": "webpack --config build/webpack.config.js"
   },
   "devDependencies": {
     "@types/chrome": "0.0.48",
-    "@types/jest": "^21.1.2",
-    "fuse-box": "2.2.31",
+    "@types/jest": "21.1.2",
+    "awesome-typescript-loader": "3.2.3",
     "jest": "21.2.1",
     "rimraf": "2.6.2",
     "ts-jest": "21.1.2",
-    "typescript": "2.5.3"
+    "tslint": "5.7.0",
+    "tslint-config-standard": "6.0.1",
+    "typescript": "2.5.3",
+    "webpack": "3.6.0"
   },
   "dependencies": {
     "redux": "3.7.2",

@@ -3,8 +3,10 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
+    "baseUrl": "src",
     "jsx": "react",
     "lib": [
+      "es5",
       "es6",
       "dom"
     ],
