@@ -59,6 +59,7 @@ function postMessage(message: protocolDomain.Message<any>): void {
   window.postMessage({
     ...message,
     version: protocolDomain.PROTOCOL_VERSION,
+    family: 'WSInspector',
     timestamp: new Date()
   }, '*');
 }

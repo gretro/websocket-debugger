@@ -19,7 +19,7 @@ fuse.dev({
 fuse.bundle('live')
   .target('browser')
   .instructions('>live/index.ts')
-  .watch();
+  .watch('src/**')
 
 fuse.run();
 

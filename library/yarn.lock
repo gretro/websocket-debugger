@@ -2,16 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/node@*":
-  version "8.0.25"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.25.tgz#66ecaf4df93f5281b48427ee96fbcdfc4f0cdce1"
-
-"@types/uuid@3.4.1":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.1.tgz#1b8d5e318ba733f63042b7e58bbf5b8552eaa43f"
-  dependencies:
-    "@types/node" "*"
-
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"

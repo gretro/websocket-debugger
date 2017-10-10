@@ -9,15 +9,34 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist && rimraf .fusebox",
+    "test": "jest",
     "start": "node fuse.js"
   },
   "devDependencies": {
     "@types/chrome": "0.0.48",
+    "@types/jest": "^21.1.2",
     "fuse-box": "2.2.31",
+    "jest": "21.2.1",
     "rimraf": "2.6.2",
+    "ts-jest": "21.1.2",
     "typescript": "2.5.3"
   },
   "dependencies": {
-    "redux": "3.7.2"
+    "redux": "3.7.2",
+    "redux-observable": "0.16.0",
+    "rxjs": "5.4.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
   }
 }

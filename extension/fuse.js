@@ -9,7 +9,7 @@ const fuse = FuseBox.init({
 })
 
 fuse.dev({
-    port: 8002
+    port: 8003
 })
 
 fuse.bundle('content_script')
