@@ -10,21 +10,22 @@
   "scripts": {
     "clean": "rimraf dist",
     "test": "jest",
+    "test:dev": "jest --watch",
     "lint": "tslint --type-check --project tsconfig.json",
     "start": "better-npm-run dev",
-    "build": "better-npm-run build:dev"
+    "build": "npm run clean && npm run lint && better-npm-run build:prod"
   },
   "betterScripts": {
     "dev": {
-      "command": "webpack-dev-server --config build/webpack.config.js",
+      "command": "webpack --config build/webpack.config.js --watch",
       "env": {
         "NODE_ENV": "development"
       }
     },
-    "build:dev": {
+    "build:prod": {
       "command": "webpack --config build/webpack.config.js",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "production"
       }
     }
   },
@@ -41,8 +42,7 @@
     "tslint-config-standard": "6.0.1",
     "tslint-webpack-plugin": "^1.0.0",
     "typescript": "2.5.3",
-    "webpack": "3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack": "3.6.0"
   },
   "dependencies": {
     "redux": "3.7.2",

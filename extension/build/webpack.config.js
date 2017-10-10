@@ -28,10 +28,7 @@ const webpackConfig = {
     new CopyWebpackPlugin([
       { from: paths.base('static') }
     ])
-  ],
-  devServer: {
-    port: 8003
-  }
+  ]
 }
 
 if (isDev) {
