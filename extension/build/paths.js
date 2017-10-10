@@ -1,11 +1,11 @@
 const path = require('path')
 
-function paths(basePath, ...parts) {
-  return path.join(basePath, ...parts)
+function paths(...parts) {
+  return path.join(...parts)
 }
 
-paths.base = paths(path.resolve(`${__dirname}/..`))
-paths.src = paths.bind(null, paths.base, 'src')
-paths.dist = paths.bind(null, paths.base, 'dist')
+paths.base = paths.bind(null, path.resolve(`${__dirname}/..`))
+paths.src = paths.bind(null, paths.base(), 'src')
+paths.dist = paths.bind(null, paths.base(), 'dist')
 
 module.exports = paths

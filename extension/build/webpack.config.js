@@ -1,5 +1,6 @@
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const paths = require('./paths')
+const { isDev } = require('./env')
 
 const webpackConfig = {
   entry: {
@@ -24,6 +25,23 @@ const webpackConfig = {
   plugins: [
     new CheckerPlugin()
   ]
+}
+
+if (isDev) {
+  console.log('Dev mode detected')
+
+  const TSLintPlugin = require('tslint-webpack-plugin')
+
+  // For production, linting is called on it's own.
+  webpackConfig.plugins.push(new TSLintPlugin({
+    files: [
+      paths.src('**/*.ts'),
+      paths.src('**/*.tsx'),
+    ],
+    config: paths.base('tslint.json'),
+    project: paths.base('tsconfig.json'),
+    typeCheck: true
+  }))
 }
 
 module.exports = webpackConfig
