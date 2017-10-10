@@ -1,4 +1,5 @@
 const { CheckerPlugin } = require('awesome-typescript-loader')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const paths = require('./paths')
 const { isDev } = require('./env')
 
@@ -23,8 +24,14 @@ const webpackConfig = {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   plugins: [
-    new CheckerPlugin()
-  ]
+    new CheckerPlugin(),
+    new CopyWebpackPlugin([
+      { from: paths.base('static') }
+    ])
+  ],
+  devServer: {
+    port: 8003
+  }
 }
 
 if (isDev) {
