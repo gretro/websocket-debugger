@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-
 const paths = require('./paths')
 const { isDev } = require('./env')
 
@@ -31,6 +30,9 @@ const webpackConfig = {
     new CopyWebpackPlugin([
       { from: paths.base('static') }
     ]),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development'
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "manifest",
       minChunks: Infinity

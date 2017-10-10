@@ -3,7 +3,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
-    "baseUrl": "src",
     "jsx": "react",
     "lib": [
       "es5",
@@ -12,7 +11,6 @@
     ],
     "module": "commonjs",
     "moduleResolution": "node",
-    "noResolve": true,
     "newLine": "LF",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
