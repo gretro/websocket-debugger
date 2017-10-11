@@ -7,7 +7,8 @@ const { isDev } = require('./env')
 
 const webpackConfig = {
   entry: {
-    "content_script": paths.src('content_script/index.ts')
+    "content_script": paths.src('content_script/index.ts'),
+    "background": paths.src('background/index.ts')
   },
   output: {
     path: paths.dist(),

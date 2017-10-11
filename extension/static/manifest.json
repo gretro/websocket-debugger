@@ -9,5 +9,9 @@
       "js": [ "manifest.js", "content_script.js" ],
       "run_at": "document_start"
     }
-  ]
+  ],
+  "background": {
+    "scripts": [ "manifest.js", "background.js" ],
+    "persistent": false
+  }
 }
