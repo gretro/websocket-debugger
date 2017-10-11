@@ -1,5 +1,4 @@
 export const PROTOCOL_VERSION = "1.0.0";
-const PREFIX = `WSDebug:`;
 
 export interface Message<T> {
   type: string;
@@ -16,21 +15,21 @@ export enum SocketStatus {
   closed = 'CLOSED'
 }
 
-export const SOCKET_CREATED_TYPE = `${PREFIX}SOCKET_CREATED`;
+export const SOCKET_CREATED_TYPE = `SOCKET_CREATED`;
 export interface SocketCreatedEvent {
   socketId: string;
   status: SocketStatus;
   url: string;
 }
 
-export const SOCKET_STATUS_UPDATE_TYPE = `${PREFIX}SOCKET_STATUS_UPDATE`;
+export const SOCKET_STATUS_UPDATE_TYPE = `SOCKET_STATUS_UPDATE`;
 export interface SocketStatusUpdateEvent {
   socketId: string;
   status: SocketStatus;
 }
 
-export const MESSAGE_SENT_TYPE = `${PREFIX}MESSAGE_SENT`;
-export const MESSAGE_RECEIVED_TYPE = `${PREFIX}MESSAGE_RECEIVED`;
+export const MESSAGE_SENT_TYPE = `MESSAGE_SENT`;
+export const MESSAGE_RECEIVED_TYPE = `MESSAGE_RECEIVED`;
 export interface MessageExchangeEvent {
   socketId: string;
   data: any;

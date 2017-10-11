@@ -21,6 +21,7 @@ type OnMessageCallback = (message: any) => void
 
 interface CreatePortManagerOptions {
   onMessage: OnMessageCallback
+  onTabClosed: (tabId: string) => void
 }
 
 export function createPortManager(options: CreatePortManagerOptions): PortManager {
@@ -39,26 +40,28 @@ export function createPortManager(options: CreatePortManagerOptions): PortManage
 function listen(state: State, options: CreatePortManagerOptions): void {
   chrome.runtime.onConnect.addListener(port => {
     if (port.name === CONTENT_SCRIPT_PORT_NAME) {
-      addContentScriptPort(port, state, options.onMessage)
+      addContentScriptPort(port, state, options)
     }
   })
 
   state.state = 'OPENED'
 }
 
-function addContentScriptPort(port: chrome.runtime.Port, state: State, msgCallback: OnMessageCallback) {
+function addContentScriptPort(port: chrome.runtime.Port, state: State, options: CreatePortManagerOptions) {
   const tabId = port.sender.tab.id
   state.csPorts[tabId] = port
 
   port.onDisconnect.addListener(() => {
     state.csPorts[tabId] = void(0)
+
+    options.onTabClosed(tabId)
   })
 
   port.onMessage.addListener((msg: any) => {
-    msgCallback({
+    options.onMessage({
       ...msg,
-      payload: {
-        ...msg.payload,
+      meta: {
+        ...msg.meta,
         tabId
       }
     })
