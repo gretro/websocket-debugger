@@ -54,8 +54,6 @@ export function onMessageReceived(socketId: string, data: any) {
  * @param message Message to send.
  */
 function postMessage(message: protocolDomain.Message<any>): void {
-  console.debug('posting message', message)
-
   window.postMessage({
     ...message,
     error: false,

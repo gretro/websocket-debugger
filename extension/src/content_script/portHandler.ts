@@ -10,7 +10,6 @@ export function getPort (): chrome.runtime.Port {
 
     port.onDisconnect.addListener(() => {
       port = null
-      console.log('Port disconnected')
     })
   }
 
