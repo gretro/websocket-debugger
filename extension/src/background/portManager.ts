@@ -54,7 +54,7 @@ function addContentScriptPort(port: chrome.runtime.Port, state: State, options: 
   port.onDisconnect.addListener(() => {
     state.csPorts[tabId] = void(0)
 
-    options.onTabClosed(tabId)
+    options.onTabClosed(tabId.toString())
   })
 
   port.onMessage.addListener((msg: any) => {
