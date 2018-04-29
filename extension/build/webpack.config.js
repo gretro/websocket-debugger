@@ -11,7 +11,7 @@ const webpackConfig = {
     content_script: paths.src('content_script/index.ts'),
     background: paths.src('background/index.ts'),
     devtools: paths.src('devtools/devtools.ts'),
-    devtoolsPanel: paths.src('devtools/panel.ts'),
+    panel: paths.src('devtools/panel/index.tsx'),
   },
   output: {
     path: paths.dist(),
@@ -43,8 +43,8 @@ const webpackConfig = {
     }),
     new HtmlWebpackPlugin({
       filename: 'devtools_panel.html',
-      template: paths.src('devtools/panel.html'),
-      chunks: ['devtoolsPanel'],
+      template: paths.src('devtools/panel/panel.html'),
+      chunks: ['panel'],
     }),
   ],
 }
