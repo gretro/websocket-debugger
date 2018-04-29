@@ -7,15 +7,15 @@ console.log('Background page loaded')
 const store = getStore()
 
 const portManager = createPortManager({
-  onMessage: (msg) => {
+  onMessage: msg => {
     store.dispatch(msg)
   },
-  onTabCreated: (tabId) => {
+  onTabCreated: tabId => {
     store.dispatch(createTab(tabId))
   },
-  onTabClosed: (tabId) => {
+  onTabClosed: tabId => {
     store.dispatch(deleteTab(tabId))
-  }
+  },
 })
 
 chrome.runtime.onSuspend.addListener(() => {

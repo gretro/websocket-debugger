@@ -3,15 +3,17 @@
   "name": "Websocket Inspector",
   "version": "0.1.0",
   "description": "An inspector for Websocket content",
-  "content_scripts" : [
+  "minimum_chrome_version": "10.0",
+  "content_scripts": [
     {
-      "matches": [ "<all_urls>" ],
-      "js": [ "manifest.js", "content_script.js" ],
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"],
       "run_at": "document_start"
     }
   ],
   "background": {
-    "scripts": [ "manifest.js", "background.js" ],
+    "scripts": ["background.js"],
     "persistent": false
-  }
+  },
+  "devtools_page": "devtools.html"
 }

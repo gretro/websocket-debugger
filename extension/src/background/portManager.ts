@@ -3,12 +3,12 @@ import { CONTENT_SCRIPT_PORT_NAME } from '../common/port'
 export type PortListenerState = 'CLOSED' | 'OPENED'
 
 interface PortManager {
-  pushUpdate: (tabId: string, update: any) => void  // TODO: Define how updates are pushed.
+  pushUpdate: (tabId: string, update: any) => void // TODO: Define how updates are pushed.
   dispose: () => void
 }
 
 interface State {
-  csPorts: PortMap,
+  csPorts: PortMap
   state: PortListenerState
 }
 
@@ -28,13 +28,13 @@ interface CreatePortManagerOptions {
 export function createPortManager(options: CreatePortManagerOptions): PortManager {
   const state: State = {
     csPorts: {},
-    state: 'CLOSED'
+    state: 'CLOSED',
   }
 
   listen(state, options)
   return {
     pushUpdate: (tabId, update) => console.log('pushing update', update),
-    dispose: close.bind(null, state)
+    dispose: close.bind(null, state),
   }
 }
 
@@ -54,7 +54,7 @@ function addContentScriptPort(port: chrome.runtime.Port, state: State, options: 
   options.onTabCreated(tabId)
 
   port.onDisconnect.addListener(() => {
-    state.csPorts[tabId] = void(0)
+    state.csPorts[tabId] = void 0
 
     options.onTabClosed(tabId)
   })
@@ -64,8 +64,8 @@ function addContentScriptPort(port: chrome.runtime.Port, state: State, options: 
       ...msg,
       meta: {
         ...msg.meta,
-        tabId
-      }
+        tabId,
+      },
     })
   })
 }

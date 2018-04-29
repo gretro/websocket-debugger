@@ -17,7 +17,7 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "webpack --config build/webpack.config.js --watch",
+      "command": "webpack-dev-server --config build/webpack.config.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -30,28 +30,36 @@
     }
   },
   "devDependencies": {
-    "@types/chrome": "0.0.48",
-    "@types/clone": "^0.1.30",
+    "@types/chrome": "0.0.64",
+    "@types/clone": "0.1.30",
     "@types/deep-freeze": "0.1.1",
-    "@types/jest": "21.1.2",
-    "awesome-typescript-loader": "3.2.3",
+    "@types/jest": "22.2.3",
+    "@types/react": "16.3.13",
+    "@types/webpack-env": "1.13.6",
     "better-npm-run": "0.1.0",
     "clone": "^2.1.1",
-    "copy-webpack-plugin": "4.1.1",
+    "copy-webpack-plugin": "4.5.1",
     "deep-freeze": "0.0.1",
-    "jest": "21.2.1",
+    "html-webpack-plugin": "3.2.0",
+    "jest": "22.4.3",
+    "prettier": "1.12.1",
     "rimraf": "2.6.2",
-    "ts-jest": "21.1.2",
-    "tslint": "5.7.0",
-    "tslint-config-standard": "6.0.1",
-    "tslint-webpack-plugin": "1.0.0",
-    "typescript": "2.5.3",
-    "webpack": "3.6.0"
+    "ts-jest": "22.4.4",
+    "ts-loader": "4.2.0",
+    "tslint": "5.9.1",
+    "tslint-config-standard": "7.0.0",
+    "tslint-webpack-plugin": "1.2.2",
+    "typescript": "2.8.3",
+    "webpack": "4.6.0",
+    "webpack-cli": "2.0.15",
+    "webpack-dev-server": "3.1.3",
+    "write-file-webpack-plugin": "4.2.0"
   },
   "dependencies": {
+    "react": "16.3.2",
     "redux": "3.7.2",
-    "redux-observable": "0.16.0",
-    "rxjs": "5.4.3"
+    "redux-observable": "0.18.0",
+    "rxjs": "5.5.10"
   },
   "jest": {
     "transform": {

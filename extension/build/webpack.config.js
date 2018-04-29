@@ -1,61 +1,73 @@
 const webpack = require('webpack')
-const { CheckerPlugin } = require('awesome-typescript-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WriteFilePlugin = require('write-file-webpack-plugin')
 
 const paths = require('./paths')
 const { isDev } = require('./env')
 
 const webpackConfig = {
   entry: {
-    "content_script": paths.src('content_script/index.ts'),
-    "background": paths.src('background/index.ts')
+    content_script: paths.src('content_script/index.ts'),
+    background: paths.src('background/index.ts'),
+    devtools: paths.src('devtools/devtools.ts'),
+    devtoolsPanel: paths.src('devtools/panel.ts'),
   },
   output: {
     path: paths.dist(),
-    filename: '[name].js'
+    filename: '[name].js',
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: paths.base('static'),
+    hot: true,
+    hotOnly: true,
+  },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
-      }
-    ]
+        loader: 'ts-loader',
+      },
+    ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
-    new CheckerPlugin(),
-    new CopyWebpackPlugin([
-      { from: paths.base('static') }
-    ]),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development'
+    new CopyWebpackPlugin([{ from: paths.base('static') }, { from: paths.src('devtools/devtools.html') }]),
+    new HtmlWebpackPlugin({
+      filename: 'devtools.html',
+      template: paths.src('devtools/devtools.html'),
+      chunks: ['devtools'],
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest",
-      minChunks: Infinity
-    })
-  ]
+    new HtmlWebpackPlugin({
+      filename: 'devtools_panel.html',
+      template: paths.src('devtools/panel.html'),
+      chunks: ['devtoolsPanel'],
+    }),
+  ],
 }
 
 if (isDev) {
   console.log('Dev mode detected')
 
+  webpackConfig.mode = 'development'
+
   const TSLintPlugin = require('tslint-webpack-plugin')
 
   // For production, linting is called on it's own.
-  webpackConfig.plugins.push(new TSLintPlugin({
-    files: [
-      paths.src('**/*.ts'),
-      paths.src('**/*.tsx'),
-    ],
-    config: paths.base('tslint.json'),
-    project: paths.base('tsconfig.json'),
-    typeCheck: true
-  }))
+  webpackConfig.plugins.push(
+    new TSLintPlugin({
+      files: [paths.src('**/*.ts'), paths.src('**/*.tsx')],
+      config: paths.base('tslint.json'),
+      project: paths.base('tsconfig.json'),
+      typeCheck: true,
+    }),
+    new WriteFilePlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  )
 }
 
 module.exports = webpackConfig

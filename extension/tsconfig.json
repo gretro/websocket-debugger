@@ -4,20 +4,17 @@
     "allowUnusedLabels": false,
     "alwaysStrict": true,
     "jsx": "react",
-    "lib": [
-      "es5",
-      "es6",
-      "dom"
-    ],
+    "lib": ["es5", "es6", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "newLine": "LF",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "skipLibCheck": true,
     "target": "es6",
-    "sourceMap": true
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "pretty": true
   }
 }
