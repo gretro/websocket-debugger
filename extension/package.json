@@ -34,6 +34,7 @@
     "@types/clone": "0.1.30",
     "@types/deep-freeze": "0.1.1",
     "@types/jest": "22.2.3",
+    "@types/jss": "9.5.2",
     "@types/react": "16.3.13",
     "@types/react-dom": "16.0.5",
     "@types/webpack-env": "1.13.6",
@@ -57,8 +58,12 @@
     "write-file-webpack-plugin": "4.2.0"
   },
   "dependencies": {
+    "jss": "9.8.1",
+    "jss-preset-default": "4.3.0",
+    "normalize-jss": "4.0.0",
     "react": "16.3.2",
     "react-dom": "16.3.2",
+    "react-jss": "8.4.0",
     "redux": "3.7.2",
     "redux-observable": "0.18.0",
     "rxjs": "5.5.10"
